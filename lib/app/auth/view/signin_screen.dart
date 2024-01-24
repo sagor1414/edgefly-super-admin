@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../../home_screnn/view/home_screen.dart';
+import '../../home/view/home.dart';
 import '../component/coustom_textfield.dart';
 import '../controller/signin_controller.dart';
 
