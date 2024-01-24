@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../general/utils/my_box.dart';
 import '../../general/utils/my_tile.dart';
+import '../widgets/drower.dart';
 
 class DesktopScaffold extends StatefulWidget {
   const DesktopScaffold({Key? key}) : super(key: key);
@@ -21,9 +22,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // open drawer
-            // myDrawer,
-
-            // first half of page
+            const MyDrawer(),
             Expanded(
               flex: 2,
               child: Column(
