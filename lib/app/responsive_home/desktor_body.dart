@@ -17,8 +17,9 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffe8effa),
       body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // open drawer
@@ -27,104 +28,114 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
             padding: const EdgeInsets.all(10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Column(
-                      children: [
-                        "User Progess previous 6 month"
-                            .text
-                            .overflow(TextOverflow.ellipsis)
-                            .make(),
-                        5.heightBox,
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(10),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          "User Progess previous 6 month"
+                              .text
+                              .overflow(TextOverflow.ellipsis)
+                              .make(),
+                          5.heightBox,
+                          SizedBox(
+                            height: context.screenHeight * .4,
+                            width: context.screenWidth * .344,
+                            child: const Padding(
+                              padding: EdgeInsets.all(10),
+                              child: BarChartSample(),
+                            ),
                           ),
-                          height: context.screenHeight * .4,
-                          width: context.screenWidth * .3,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: BarChartShow(),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     SizedBox(
-                      width: context.screenWidth * .03,
+                      width: context.screenWidth * .025,
                     ),
-                    Column(
-                      children: [
-                        "User Progess current month"
-                            .text
-                            .overflow(TextOverflow.ellipsis)
-                            .make(),
-                        5.heightBox,
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(10),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          "User Progess current month"
+                              .text
+                              .overflow(TextOverflow.ellipsis)
+                              .make(),
+                          5.heightBox,
+                          SizedBox(
+                            height: context.screenHeight * .4,
+                            width: context.screenWidth * .344,
+                            child: const Padding(
+                              padding: EdgeInsets.all(10),
+                              child: PieChartSample(),
+                            ),
                           ),
-                          height: context.screenHeight * .4,
-                          width: context.screenWidth * .3,
-                          child: const Padding(
-                            padding: EdgeInsets.all(10),
-                            child: PieChartSample(),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      children: [
-                        "Admin Progess previous 6 month"
-                            .text
-                            .overflow(TextOverflow.ellipsis)
-                            .make(),
-                        5.heightBox,
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(10),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          "Admin Progess previous 6 month"
+                              .text
+                              .overflow(TextOverflow.ellipsis)
+                              .make(),
+                          5.heightBox,
+                          SizedBox(
+                            height: context.screenHeight * .4,
+                            width: context.screenWidth * .344,
+                            child: const Padding(
+                              padding: EdgeInsets.all(10),
+                              child: BarChartSample(),
+                            ),
                           ),
-                          height: context.screenHeight * .4,
-                          width: context.screenWidth * .3,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: BarChartShow(),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     SizedBox(
-                      width: context.screenWidth * .03,
+                      width: context.screenWidth * .025,
                     ),
-                    Column(
-                      children: [
-                        "Overall Progess previous 6 month"
-                            .text
-                            .overflow(TextOverflow.ellipsis)
-                            .make(),
-                        5.heightBox,
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(10),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          "Overall Progess previous 6 month"
+                              .text
+                              .overflow(TextOverflow.ellipsis)
+                              .make(),
+                          5.heightBox,
+                          SizedBox(
+                            height: context.screenHeight * .4,
+                            width: context.screenWidth * .344,
+                            child: const Padding(
+                              padding: EdgeInsets.all(10),
+                              child: LineChartSample(),
+                            ),
                           ),
-                          height: context.screenHeight * .4,
-                          width: context.screenWidth * .3,
-                          child: const Padding(
-                            padding: EdgeInsets.all(10),
-                            child: LineChartSample(),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
