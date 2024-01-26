@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../pending_question_details/view/pending_question_view.dart';
 import '../controller/pending_question_list_controller.dart';
 
 // ignore: must_be_immutable
@@ -97,7 +98,11 @@ class _PendingQuestionPhysicsState extends State<PendingQuestionPhysics> {
                             ],
                           ),
                           child: ListTile(
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(() => PendingQuestionDetails(
+                                    questionData: questionData,
+                                  ));
+                            },
                             subtitle: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
