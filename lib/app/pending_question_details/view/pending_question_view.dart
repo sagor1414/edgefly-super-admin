@@ -5,7 +5,7 @@ import 'package:velocity_x/velocity_x.dart';
 class PendingQuestionDetails extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   var questionData;
-  PendingQuestionDetails({super.key, required this.questionData});
+  PendingQuestionDetails({super.key, this.questionData});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +32,32 @@ class PendingQuestionDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(context.screenHeight * .02),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Subject: ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                          Expanded(
+                            child: Text(
+                              "${questionData['subject']}",
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    10.heightBox,
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.all(context.screenHeight * .02),
