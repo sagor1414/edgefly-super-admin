@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../controller/pending_to_add_reject.dart';
 
 // ignore: must_be_immutable
 class PendingQuestionDetails extends StatelessWidget {
@@ -9,6 +12,7 @@ class PendingQuestionDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    QuestionReviewController controller = Get.put(QuestionReviewController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 204, 217, 253),
@@ -44,13 +48,13 @@ class PendingQuestionDetails extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            "Subject: ",
+                            "Chapter: ",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                           ),
                           Expanded(
                             child: Text(
-                              "${questionData['subject']}",
+                              "${questionData['chapter']}",
                               style: const TextStyle(fontSize: 16),
                             ),
                           ),
@@ -221,20 +225,28 @@ class PendingQuestionDetails extends StatelessWidget {
                           width: context.screenWidth * .3,
                           height: context.screenHeight * .06,
                           child: ElevatedButton(
-                            onPressed: () {},
-                            child: const Text("Submit"),
-                          ),
-                        ),
-                        SizedBox(
-                          width: context.screenWidth * .3,
-                          height: context.screenHeight * .06,
-                          child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.red),
                             onPressed: () async {},
                             child: const Text(
                               "Reject",
                               style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: context.screenWidth * .3,
+                          height: context.screenHeight * .06,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              controller.acceptQuestio(context, questionData);
+                            },
+                            child: Obx(
+                              () => controller.isloading.value
+                                  ? const Center(
+                                      child: CircularProgressIndicator(),
+                                    )
+                                  : const Text("Accept"),
                             ),
                           ),
                         ),
