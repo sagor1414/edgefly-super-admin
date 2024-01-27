@@ -22,16 +22,16 @@ class MyDrawer extends StatelessWidget {
                 ClipOval(
                   clipBehavior: Clip.antiAlias,
                   child: Container(
-                    width: context.screenHeight * .12,
-                    height: context.screenHeight * .12,
+                    width: context.screenHeight * .1,
+                    height: context.screenHeight * .1,
                     decoration: BoxDecoration(
                       borderRadius:
                           BorderRadius.circular(context.screenHeight * .06),
                     ),
                     child: Image.asset(
                       'assets/icons/profile.png',
-                      width: context.screenHeight * .12,
-                      height: context.screenHeight * .12,
+                      width: context.screenHeight * .1,
+                      height: context.screenHeight * .1,
                       fit: BoxFit.cover,
                     ),
                   ),
