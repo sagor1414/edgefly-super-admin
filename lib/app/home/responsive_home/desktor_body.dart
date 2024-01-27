@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../widgets/drower.dart';
+import '../../widgets/drower.dart';
 import 'component/bar_chart.dart';
 import 'component/line_chart.dart';
 import 'component/pei_chart.dart';

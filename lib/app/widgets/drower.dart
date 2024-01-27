@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../home/view/home.dart';
 import '../pending_ question/view/pending_question.dart';
@@ -13,6 +14,32 @@ class MyDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
+          DrawerHeader(
+              child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                ClipOval(
+                  clipBehavior: Clip.antiAlias,
+                  child: Container(
+                    width: context.screenHeight * .12,
+                    height: context.screenHeight * .12,
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.circular(context.screenHeight * .06),
+                    ),
+                    child: Image.asset(
+                      'assets/icons/profile.png',
+                      width: context.screenHeight * .12,
+                      height: context.screenHeight * .12,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                "Super Admin".text.make()
+              ],
+            ),
+          )),
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Dashboard'),
