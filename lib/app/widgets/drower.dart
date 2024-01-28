@@ -63,11 +63,6 @@ class MyDrawer extends StatelessWidget {
             onTap: () {},
           ),
           ListTile(
-            leading: const Icon(Icons.comment),
-            title: const Text('Terms & condition'),
-            onTap: () {},
-          ),
-          ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
             onTap: () {
