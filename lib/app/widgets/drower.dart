@@ -58,8 +58,13 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.policy),
-            title: const Text('Privacy policy'),
+            leading: const Icon(Icons.payment),
+            title: const Text('Admin Payment'),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.payment),
+            title: const Text('User Payment'),
             onTap: () {},
           ),
           ListTile(
