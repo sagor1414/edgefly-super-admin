@@ -227,7 +227,11 @@ class PendingQuestionDetails extends StatelessWidget {
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.red),
-                            onPressed: () async {},
+                            onPressed: () async {
+                              await controller.rejectQuestion(
+                                  context, questionData);
+                              Get.back();
+                            },
                             child: const Text(
                               "Reject",
                               style: TextStyle(color: Colors.white),
@@ -239,7 +243,9 @@ class PendingQuestionDetails extends StatelessWidget {
                           height: context.screenHeight * .06,
                           child: ElevatedButton(
                             onPressed: () async {
-                              controller.acceptQuestio(context, questionData);
+                              await controller.acceptQuestio(
+                                  context, questionData);
+                              Get.back();
                             },
                             child: Obx(
                               () => controller.isloading.value

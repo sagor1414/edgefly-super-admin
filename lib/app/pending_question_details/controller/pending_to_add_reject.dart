@@ -3,9 +3,11 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class QuestionReviewController extends GetxController {
   var isloading = false.obs;
+  var isloadings = false.obs;
 
   acceptQuestio(context, var questiondata) async {
     try {
@@ -67,6 +69,27 @@ class QuestionReviewController extends GetxController {
     } catch (e) {
       log('Error is : $e');
       isloading(false);
+    }
+  }
+
+  rejectQuestion(context, var questiondata) async {
+    try {
+      isloadings.value = true;
+      await FirebaseFirestore.instance
+          .collection('questionsetter')
+          .doc(questiondata['qsUid'])
+          .collection('question')
+          .doc(questiondata['timestamp'])
+          .update({'status': 'accepted'}).then((value) async {
+        await FirebaseFirestore.instance
+            .collection('PendingQestions')
+            .doc(questiondata['timestamp'])
+            .delete();
+        isloadings.value = false;
+      });
+    } catch (e) {
+      isloadings.value = false;
+      VxToast.show(context, msg: "Try after some time");
     }
   }
 }
