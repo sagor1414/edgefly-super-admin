@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../home/view/home.dart';
 import '../pending_ question/view/pending_question.dart';
 import '../settings/view/setting_view.dart';
