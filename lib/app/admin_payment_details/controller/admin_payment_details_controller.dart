@@ -5,53 +5,44 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class QuestionReviewController extends GetxController {
+class AdminPaymentDetailsController extends GetxController {
   var isloading = false.obs;
   var isloadings = false.obs;
 
-  acceptQuestio(context, var questiondata) async {
+  acceptPayment(context, var questiondata) async {
     try {
       isloading(true);
-      Map<String, dynamic> acceptquestion = {
-        'category': questiondata['category'],
-        'subject': questiondata['subject'],
-        'chapter': questiondata['chapter'],
-        'question': questiondata['question'],
-        'option1': questiondata['option1'],
-        'option2': questiondata['option2'],
-        'option3': questiondata['option3'],
-        'option4': questiondata['option4'],
-        'answer': questiondata['answer'],
+      Map<String, dynamic> acceptpayment = {
+        'amount': questiondata['amount'],
+        'number': questiondata['number'],
         'status': 'accepted',
-        'qsUid': questiondata['qsUid'],
-        'submitTime': questiondata['submitTime'],
+        'uid': questiondata['uid'],
+        'time': questiondata['time'],
         'timestamp': questiondata['timestamp'],
       };
 
       await FirebaseFirestore.instance
-          .collection('question')
-          .doc(questiondata['category'])
-          .collection(questiondata['subject'])
+          .collection('acceptedPayment')
           .doc(questiondata['timestamp'])
-          .set(acceptquestion)
+          .set(acceptpayment)
           .then((value) async {
         await FirebaseFirestore.instance
             .collection('questionsetter')
-            .doc(questiondata['qsUid'])
-            .collection('question')
+            .doc(questiondata['uid'])
+            .collection('transaction')
             .doc(questiondata['timestamp'])
             .update({'status': 'accepted'}).then((value) async {
           await FirebaseFirestore.instance
-              .collection('PendingQestions')
+              .collection('adminPayment')
               .doc(questiondata['timestamp'])
               .delete();
         });
 
         Get.snackbar(
           "sucessfull",
-          "Question Accepted Sucessfully",
+          "Payment Accepted Sucessfully",
           snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.grey[400],
+          backgroundColor: Colors.white,
           borderRadius: 20,
           margin: const EdgeInsets.all(15),
           padding: const EdgeInsets.all(15),
@@ -61,7 +52,6 @@ class QuestionReviewController extends GetxController {
           dismissDirection: DismissDirection.horizontal,
           forwardAnimationCurve: Curves.easeOutBack,
         );
-        Get.back();
       });
 
       log('Accept Sucessfull');
@@ -72,17 +62,17 @@ class QuestionReviewController extends GetxController {
     }
   }
 
-  rejectQuestion(context, var questiondata) async {
+  rejectPayment(context, var questiondata) async {
     try {
       isloadings.value = true;
       await FirebaseFirestore.instance
           .collection('questionsetter')
-          .doc(questiondata['qsUid'])
-          .collection('question')
+          .doc(questiondata['uid'])
+          .collection('transaction')
           .doc(questiondata['timestamp'])
           .update({'status': 'rejected'}).then((value) async {
         await FirebaseFirestore.instance
-            .collection('PendingQestions')
+            .collection('adminPayment')
             .doc(questiondata['timestamp'])
             .delete();
         isloadings.value = false;

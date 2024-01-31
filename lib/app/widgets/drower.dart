@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+import '../admin_payment/view/admin_payment.dart';
 import '../home/view/home.dart';
 import '../pending_ question/view/pending_question.dart';
 import '../settings/view/setting_view.dart';
@@ -59,7 +60,9 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.payment),
             title: const Text('Admin Payment'),
-            onTap: () {},
+            onTap: () {
+              Get.to(() => const PendingAdminPayment());
+            },
           ),
           ListTile(
             leading: const Icon(Icons.payment),

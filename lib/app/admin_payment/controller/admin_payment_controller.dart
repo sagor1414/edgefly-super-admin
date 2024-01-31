@@ -20,7 +20,7 @@ class AdminPaymentController extends GetxController {
 
   void fetchData() {
     FirebaseFirestore.instance
-        .collection('PendingQestions')
+        .collection('adminPayment')
         .orderBy('timestamp', descending: true)
         // .where('subject', isEqualTo: subject)
         .limit(15)
@@ -41,7 +41,7 @@ class AdminPaymentController extends GetxController {
     if (!loadingMore.value && lastDocument != null) {
       loadingMore(true); // Set loadingMore to true to prevent multiple calls
       FirebaseFirestore.instance
-          .collection('PendingQestions')
+          .collection('adminPayment')
           .orderBy('timestamp', descending: true)
           .startAfterDocument(lastDocument!)
           // .where('subject', isEqualTo: subject)

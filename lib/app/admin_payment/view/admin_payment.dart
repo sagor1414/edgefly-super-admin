@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../../pending_question_details/view/pending_question_view.dart';
+import '../../admin_payment_details/view/admin_payment_details.dart';
 
-class PendingQuestionPhysics extends StatelessWidget {
-  const PendingQuestionPhysics({
+class PendingAdminPayment extends StatelessWidget {
+  const PendingAdminPayment({
     super.key,
   });
 
@@ -46,7 +46,7 @@ class PendingQuestionPhysics extends StatelessWidget {
                           children: [
                             60.heightBox,
                             Text(
-                              "You Don't have any pending question",
+                              "You Don't have any pending Payment",
                               style: TextStyle(
                                   fontSize: context.screenWidth * .06,
                                   fontWeight: FontWeight.w500),
@@ -86,7 +86,7 @@ class PendingQuestionPhysics extends StatelessWidget {
                           ),
                           child: ListTile(
                             onTap: () {
-                              Get.to(() => PendingQuestionDetails(
+                              Get.to(() => AdminPaymentDetails(
                                     questionData: questionData,
                                   ));
                             },
@@ -95,7 +95,7 @@ class PendingQuestionPhysics extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
-                                  "Subject: ",
+                                  "Amount: ",
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
@@ -110,7 +110,7 @@ class PendingQuestionPhysics extends StatelessWidget {
                                         height: context.screenWidth * .012,
                                       ),
                                       Text(
-                                        "${questionData['subject']}",
+                                        "${questionData['amount']}",
                                         maxLines: 3,
                                         overflow: TextOverflow.ellipsis,
                                         style: const TextStyle(fontSize: 14),
@@ -123,7 +123,7 @@ class PendingQuestionPhysics extends StatelessWidget {
                             title: Row(
                               children: [
                                 const Text(
-                                  "Question:  ",
+                                  "Number:  ",
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -131,7 +131,7 @@ class PendingQuestionPhysics extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    "${questionData['question']}",
+                                    "${questionData['number']}",
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ),

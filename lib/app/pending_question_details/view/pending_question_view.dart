@@ -232,9 +232,15 @@ class PendingQuestionDetails extends StatelessWidget {
                                   context, questionData);
                               Get.back();
                             },
-                            child: const Text(
-                              "Reject",
-                              style: TextStyle(color: Colors.white),
+                            child: Obx(
+                              () => controller.isloadings.value
+                                  ? const Center(
+                                      child: CircularProgressIndicator(),
+                                    )
+                                  : const Text(
+                                      "Reject",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                             ),
                           ),
                         ),
