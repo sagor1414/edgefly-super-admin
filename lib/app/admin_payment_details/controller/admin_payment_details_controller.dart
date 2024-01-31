@@ -22,7 +22,7 @@ class AdminPaymentDetailsController extends GetxController {
       };
 
       await FirebaseFirestore.instance
-          .collection('acceptedPayment')
+          .collection('alltransaction')
           .doc(questiondata['timestamp'])
           .set(acceptpayment)
           .then((value) async {
