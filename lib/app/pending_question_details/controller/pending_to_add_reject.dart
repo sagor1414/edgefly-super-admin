@@ -45,13 +45,14 @@ class QuestionReviewController extends GetxController {
               .collection('PendingQestions')
               .doc(questiondata['timestamp'])
               .delete();
+          Get.back();
         });
 
         Get.snackbar(
           "sucessfull",
           "Question Accepted Sucessfully",
           snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.grey[400],
+          backgroundColor: Colors.white,
           borderRadius: 20,
           margin: const EdgeInsets.all(15),
           padding: const EdgeInsets.all(15),
@@ -61,7 +62,6 @@ class QuestionReviewController extends GetxController {
           dismissDirection: DismissDirection.horizontal,
           forwardAnimationCurve: Curves.easeOutBack,
         );
-        Get.back();
       });
 
       log('Accept Sucessfull');

@@ -29,7 +29,7 @@ class PendingQuestionDetails extends StatelessWidget {
                 width: context.screenWidth,
                 padding: EdgeInsets.all(context.screenHeight * .05),
                 decoration: BoxDecoration(
-                  color: const Color(0xff4bb050),
+                  color: const Color.fromARGB(255, 154, 247, 159),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
@@ -235,7 +235,9 @@ class PendingQuestionDetails extends StatelessWidget {
                             child: Obx(
                               () => controller.isloadings.value
                                   ? const Center(
-                                      child: CircularProgressIndicator(),
+                                      child: CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ),
                                     )
                                   : const Text(
                                       "Reject",
@@ -248,17 +250,26 @@ class PendingQuestionDetails extends StatelessWidget {
                           width: context.screenWidth * .3,
                           height: context.screenHeight * .06,
                           child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.green,
+                            ),
                             onPressed: () async {
                               await controller.acceptQuestio(
-                                  context, questionData);
-                              Get.back();
+                                context,
+                                questionData,
+                              );
                             },
                             child: Obx(
                               () => controller.isloading.value
                                   ? const Center(
-                                      child: CircularProgressIndicator(),
+                                      child: CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ),
                                     )
-                                  : const Text("Accept"),
+                                  : const Text(
+                                      "Accept",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                             ),
                           ),
                         ),
