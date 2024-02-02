@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../admin_payment/view/admin_payment.dart';
+import '../all_transaction/view/all_transaction_view.dart';
 import '../home/view/home.dart';
 import '../pending_ question/view/pending_question.dart';
 import '../settings/view/setting_view.dart';
@@ -73,10 +74,17 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: const Icon(Icons.history),
+            title: const Text('All Transaction'),
+            onTap: () {
+              Get.to(() => const TransactionScreen());
+            },
+          ),
+          ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
             onTap: () {
-              Get.to(() => const SettingView());
+              Get.to(() => const SettingScreen());
             },
           ),
         ],
