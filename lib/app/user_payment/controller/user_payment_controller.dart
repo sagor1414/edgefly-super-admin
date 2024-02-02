@@ -22,7 +22,6 @@ class UserPaymentController extends GetxController {
     FirebaseFirestore.instance
         .collection('userPayment')
         .orderBy('timestamp', descending: true)
-        // .where('subject', isEqualTo: subject)
         .limit(15)
         .snapshots()
         .listen((snapshot) {
@@ -44,7 +43,6 @@ class UserPaymentController extends GetxController {
           .collection('userPayment')
           .orderBy('timestamp', descending: true)
           .startAfterDocument(lastDocument!)
-          // .where('subject', isEqualTo: subject)
           .limit(15)
           .get()
           .then((snapshot) {

@@ -3,8 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import '../../admin_payment_details/view/admin_payment_details.dart';
 import '../controller/user_payment_controller.dart';
 
 class PendingUserPayment extends StatelessWidget {
@@ -85,11 +83,7 @@ class PendingUserPayment extends StatelessWidget {
                             ],
                           ),
                           child: ListTile(
-                            onTap: () {
-                              Get.to(() => AdminPaymentDetails(
-                                    questionData: questionData,
-                                  ));
-                            },
+                            onTap: () {},
                             subtitle: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
