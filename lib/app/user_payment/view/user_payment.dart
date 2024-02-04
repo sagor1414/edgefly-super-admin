@@ -117,7 +117,7 @@ class PendingUserPayment extends StatelessWidget {
                             title: Row(
                               children: [
                                 const Text(
-                                  "Number:  ",
+                                  "Number: ",
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
