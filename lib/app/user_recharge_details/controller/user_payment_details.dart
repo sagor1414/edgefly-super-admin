@@ -1,13 +1,39 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class UserPaymentDetailsCOntroller extends GetxController {
+  @override
+  void onInit() {
+    super.onInit();
+    getuserinfo();
+  }
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final balance = 0.obs;
+  final updatebalance = 0.obs;
+
   var isloading = false.obs;
   var isloadings = false.obs;
+
+  getuserinfo() async {
+    User? user = _auth.currentUser;
+    if (user != null) {
+      String userId = user.uid;
+
+      DocumentSnapshot userDocSnapshot =
+          await _firestore.collection('users').doc(userId).get();
+
+      String balanceString = userDocSnapshot['balance'];
+      int balanceInt = int.parse(balanceString);
+      balance.value = balanceInt;
+    }
+  }
 
   acceptPayment(context, var paymentdatas) async {
     try {
@@ -33,11 +59,14 @@ class UserPaymentDetailsCOntroller extends GetxController {
             .doc(paymentdatas['timestamp'])
             .update({'status': 'accepted'}).then((value) async {
           await FirebaseFirestore.instance
-              .collection('userWallet')
-              .doc(paymentdatas['timestamp'])
-              .delete();
+              .collection('users')
+              .doc(paymentdatas['uid'])
+              .update({'balance': balance + paymentdatas['rechargeAmount']});
         });
-
+        await FirebaseFirestore.instance
+            .collection('userWallet')
+            .doc(paymentdatas['timestamp'])
+            .delete();
         Get.snackbar(
           "sucessfull",
           "Payment Accepted Sucessfully",
