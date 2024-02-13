@@ -20,7 +20,7 @@ class UserPaymentController extends GetxController {
 
   void fetchData() {
     FirebaseFirestore.instance
-        .collection('userPayment')
+        .collection('userWallet')
         .orderBy('timestamp', descending: true)
         .limit(15)
         .snapshots()
@@ -40,7 +40,7 @@ class UserPaymentController extends GetxController {
     if (!loadingMore.value && lastDocument != null) {
       loadingMore(true); // Set loadingMore to true to prevent multiple calls
       FirebaseFirestore.instance
-          .collection('userPayment')
+          .collection('userWallet')
           .orderBy('timestamp', descending: true)
           .startAfterDocument(lastDocument!)
           .limit(15)

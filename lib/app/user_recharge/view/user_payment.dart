@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+import '../../../user_recharge_details/view/user_payment_details.dart';
 import '../controller/user_payment_controller.dart';
 
 class PendingUserPayment extends StatelessWidget {
@@ -18,7 +19,7 @@ class PendingUserPayment extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 60, 160, 206),
         elevation: 2,
-        title: const Text("User payment"),
+        title: const Text("User recharge"),
       ),
       body: NotificationListener(
         onNotification: (ScrollNotification scrollInfo) {
@@ -62,8 +63,7 @@ class PendingUserPayment extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: controller.questionlist.length,
                       itemBuilder: (context, index) {
-                        var questionData =
-                            controller.questionlist[index].data();
+                        var paymentdata = controller.questionlist[index].data();
                         return Container(
                           padding: const EdgeInsets.all(8),
                           margin: EdgeInsets.only(
@@ -83,7 +83,11 @@ class PendingUserPayment extends StatelessWidget {
                             ],
                           ),
                           child: ListTile(
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(() => UserPaymentDetails(
+                                    paymentData: paymentdata,
+                                  ));
+                            },
                             subtitle: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +108,7 @@ class PendingUserPayment extends StatelessWidget {
                                         height: context.screenWidth * .012,
                                       ),
                                       Text(
-                                        "${questionData['amount']}",
+                                        "${paymentdata['rechargeAmount']}",
                                         maxLines: 3,
                                         overflow: TextOverflow.ellipsis,
                                         style: const TextStyle(fontSize: 14),
@@ -117,7 +121,7 @@ class PendingUserPayment extends StatelessWidget {
                             title: Row(
                               children: [
                                 const Text(
-                                  "Number: ",
+                                  "Payment method: ",
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -125,7 +129,7 @@ class PendingUserPayment extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    "${questionData['number']}",
+                                    "${paymentdata['paymentMethod']}",
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ),

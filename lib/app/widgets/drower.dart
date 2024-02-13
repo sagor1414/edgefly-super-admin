@@ -6,7 +6,7 @@ import '../all_transaction/view/all_transaction_view.dart';
 import '../home/view/home.dart';
 import '../pending_ question/view/pending_question.dart';
 import '../settings/view/setting_view.dart';
-import '../user_payment/view/user_payment.dart';
+import '../user_recharge/view/user_payment.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -68,7 +68,7 @@ class MyDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.payment),
-            title: const Text('User Payment'),
+            title: const Text('User recharge'),
             onTap: () {
               Get.to(() => const PendingUserPayment());
             },
