@@ -3,23 +3,23 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-import '../../user_recharge_details/view/user_payment_details.dart';
-import '../controller/user_payment_controller.dart';
+import '../controller/user_payment_controllers.dart';
+import 'user_payment_views.dart';
 
-class PendingUserPayment extends StatelessWidget {
-  const PendingUserPayment({
+class PendingUserPayments extends StatelessWidget {
+  const PendingUserPayments({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    UserPaymentController controller = Get.put(UserPaymentController());
+    UserPaymentControllers controller = Get.put(UserPaymentControllers());
     return Scaffold(
       backgroundColor: const Color(0xff4db6e7),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 60, 160, 206),
         elevation: 2,
-        title: const Text("User recharge"),
+        title: const Text("User Payment"),
       ),
       body: NotificationListener(
         onNotification: (ScrollNotification scrollInfo) {
@@ -84,7 +84,7 @@ class PendingUserPayment extends StatelessWidget {
                           ),
                           child: ListTile(
                             onTap: () {
-                              Get.to(() => UserPaymentDetails(
+                              Get.to(() => UserPaymentDetailss(
                                     paymentData: paymentdata,
                                   ));
                             },
