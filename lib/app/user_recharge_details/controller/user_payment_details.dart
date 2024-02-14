@@ -1,43 +1,47 @@
-import 'dart:developer';
+// ignore_for_file: avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
-class UserPaymentDetailsCOntroller extends GetxController {
-  @override
-  void onInit() {
-    super.onInit();
-    getuserinfo();
-  }
-
+class UserPaymentDetailsController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final balance = 0.obs;
-  final updatebalance = 0.obs;
-
+  var balance = 0.obs;
   var isloading = false.obs;
   var isloadings = false.obs;
 
-  getuserinfo() async {
+  getuserinfo(var paymentdatas) async {
     User? user = _auth.currentUser;
     if (user != null) {
-      String userId = user.uid;
-
       DocumentSnapshot userDocSnapshot =
-          await _firestore.collection('users').doc(userId).get();
+          await _firestore.collection('users').doc(paymentdatas['uid']).get();
 
-      String balanceString = userDocSnapshot['balance'];
+      String balanceString = userDocSnapshot['balance'].toString();
       int balanceInt = int.parse(balanceString);
       balance.value = balanceInt;
+      print("Current balance: \$${balance.value}");
     }
   }
 
   acceptPayment(context, var paymentdatas) async {
     try {
       isloading(true);
+
+      int rechargeAmount = paymentdatas['rechargeAmount'] is double
+          ? (paymentdatas['rechargeAmount'] as double).toInt()
+          : int.parse(paymentdatas['rechargeAmount'].toString());
+
+      int updatedBalance = balance.value + rechargeAmount;
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(paymentdatas['uid'])
+          .update({'balance': updatedBalance.toString()});
+
+      balance.value = updatedBalance;
+
       Map<String, dynamic> acceptpayment = {
         'amount': paymentdatas['rechargeAmount'],
         'number': paymentdatas['transactionNumber'],
@@ -61,15 +65,17 @@ class UserPaymentDetailsCOntroller extends GetxController {
           await FirebaseFirestore.instance
               .collection('users')
               .doc(paymentdatas['uid'])
-              .update({'balance': balance + paymentdatas['rechargeAmount']});
+              .update({'balance': updatedBalance.toString()});
         });
+        print("Updateballance : $updatedBalance");
         await FirebaseFirestore.instance
             .collection('userWallet')
             .doc(paymentdatas['timestamp'])
             .delete();
+
         Get.snackbar(
-          "sucessfull",
-          "Payment Accepted Sucessfully",
+          "Success",
+          "Payment Accepted Successfully",
           snackPosition: SnackPosition.TOP,
           backgroundColor: Colors.white,
           borderRadius: 20,
@@ -83,17 +89,17 @@ class UserPaymentDetailsCOntroller extends GetxController {
         );
       });
 
-      log('Accept Sucessfull');
+      print('Accept Successful');
       isloading(false);
     } catch (e) {
-      log('Error is : $e');
+      print('Error: $e');
       isloading(false);
     }
   }
 
   rejectPayment(context, var paymentdatas) async {
     try {
-      isloadings.value = true;
+      isloadings(true);
       await FirebaseFirestore.instance
           .collection('users')
           .doc(paymentdatas['uid'])
@@ -104,11 +110,16 @@ class UserPaymentDetailsCOntroller extends GetxController {
             .collection('userWallet')
             .doc(paymentdatas['timestamp'])
             .delete();
-        isloadings.value = false;
+        isloadings(false);
       });
     } catch (e) {
-      isloadings.value = false;
-      VxToast.show(context, msg: "Try after some time");
+      print('Error: $e');
+      isloadings(false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Try after some time"),
+        ),
+      );
     }
   }
 }

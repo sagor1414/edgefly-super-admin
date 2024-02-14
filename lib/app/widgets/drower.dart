@@ -44,6 +44,7 @@ class MyDrawer extends StatelessWidget {
             ),
           )),
           ListTile(
+            tileColor: Colors.blue[100],
             leading: const Icon(Icons.home),
             title: const Text('Dashboard'),
             onTap: () {
@@ -51,7 +52,8 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.person),
+            tileColor: Colors.green[100],
+            leading: const Icon(Icons.pending_actions_rounded),
             title: const Text(
               'Pending Question',
               overflow: TextOverflow.ellipsis,
@@ -61,27 +63,31 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.payment),
+            tileColor: Colors.deepPurple[100],
+            leading: const Icon(Icons.pending_actions),
             title: const Text('Admin Payment'),
             onTap: () {
               Get.to(() => const PendingAdminPayment());
             },
           ),
           ListTile(
-            leading: const Icon(Icons.payment),
+            tileColor: Colors.blue[100],
+            leading: const Icon(Icons.pending_actions),
             title: const Text('User recharge'),
             onTap: () {
               Get.to(() => const PendingUserPayment());
             },
           ),
           ListTile(
-            leading: const Icon(Icons.payment),
+            tileColor: Colors.green[100],
+            leading: const Icon(Icons.pending_actions),
             title: const Text('User payment'),
             onTap: () {
               Get.to(() => const PendingUserPayments());
             },
           ),
           ListTile(
+            tileColor: Colors.deepPurple[100],
             leading: const Icon(Icons.history),
             title: const Text('All Transaction'),
             onTap: () {
@@ -89,6 +95,7 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            tileColor: Colors.blue[100],
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
             onTap: () {
